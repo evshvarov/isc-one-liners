@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Export generator="Cache" version="25">
-  <Document name="dc-sample-template.ZPM">
+  <Document name="dc-one-liners.ZPM">
     <Module>
-      <Name>dc-sample-template</Name>
+      <Name>dc-one-liners</Name>
       <Version>1.1.0</Version>
-      <Description>A basic module template for InterSystems ObjectScript with Unittests</Description>
+      <Description>Contains useful ObjectScript one-line long commands. Add your own! </Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src/iris</SourcesRoot>
-      <Resource Name="dc.sample.PKG"/>
-      <UnitTest Name="/tests" Package="dc.sample.unittests" Phase="test"/>
+      <Resource Name="dc.one.PKG"/>
     </Module>
   </Document>
 </Export>
