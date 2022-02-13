@@ -35,4 +35,16 @@ ClassMethod EnableIRISBI()
     do EnableDeepSee^%SYS.cspServer("/csp/"_$$$LOWER($namespace))
 }
 
+/// Unexpire passwords to simplify dev mode. Don't use in Production 
+ClassMethod UnExpireUserPasswords() As %Status
+{
+    zn "%SYS" Do ##class(Security.Users).UnExpireUserPasswords("*")
+}
+
+/// Export Global in the repo (docker runtime)
+ClassMethod ExportGlobal() As %Status
+{
+    d $System.OBJ.Export("GlobalD.GBL","/irisrun/repo/src/gbl/GlobalD.xml")
+}
+
 }
