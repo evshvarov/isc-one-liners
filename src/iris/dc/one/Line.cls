@@ -36,13 +36,13 @@ ClassMethod EnableIRISBI()
 }
 
 /// Unexpire passwords to simplify dev mode. Don't use in Production 
-ClassMethod UnExpireUserPasswords() As %Status
+ClassMethod UnExpireUserPasswords()
 {
     zn "%SYS" Do ##class(Security.Users).UnExpireUserPasswords("*")
 }
 
 /// Export Global in the repo (docker runtime)
-ClassMethod ExportGlobal() As %Status
+ClassMethod ExportGlobal()
 {
     d $System.OBJ.Export("GlobalD.GBL","/irisrun/repo/src/gbl/GlobalD.xml")
 }
