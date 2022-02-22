@@ -12,6 +12,8 @@ Currently it has one-liners of:
 * ZPM installation
 * IRIS BI (DeepSee) enablement
 * PercentAll creation
+* Turn Off Random globals names
+* Make the storage DDL and UDL classes similar
 
 ## Usage
 Execute classmethods in ##class(dc.one.Line).Method()

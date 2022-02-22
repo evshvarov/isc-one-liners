@@ -21,8 +21,9 @@ ClassMethod InstallZPM()
 ClassMethod CreatePersentAll() As %Status
 {
     Set sc = $$$OK
-    n $namespace
-    set $namespace="%SYS",P("Globals")="%DEFAULTDB",sc=##class(Config.Namespaces).Create("%All",.P)
+    //n $namespace
+    //set $namespace="%SYS",P("Globals")="%DEFAULTDB",sc=##class(Config.Namespaces).Create("%All",.P)
+    x "n $namespace set $namespace=""%SYS"",P(""Globals"")=""%DEFAULTDB"",sc=##class(Config.Namespaces).Create(""%All"",.P)"
     Return sc
 }
 
@@ -38,13 +39,29 @@ ClassMethod EnableIRISBI()
 /// Unexpire passwords to simplify dev mode. Don't use in Production 
 ClassMethod UnExpireUserPasswords()
 {
-    zn "%SYS" Do ##class(Security.Users).UnExpireUserPasswords("*")
+    X "n $namespace set $namespace=""%SYS"" Do ##class(Security.Users).UnExpireUserPasswords(""*"")"
 }
 
 /// Export Global in the repo (docker runtime)
 ClassMethod ExportGlobal()
 {
     d $System.OBJ.Export("GlobalD.GBL","/irisrun/repo/src/gbl/GlobalD.xml")
+}
+
+/// turns off random global names for class storage strategy
+ClassMethod TurnOffRandomGlobals() As %Status
+{
+    set sc=$SYSTEM.SQL.Util.SetOption("DDLUseExtentSet",0,.oldval)
+    return sc
+}
+
+/// Make the storage structure for DDL created and UDL created classes similar
+/// $lb("",col1,col2,,n)
+/// it makes it cancelling Final clause in the Storage
+ClassMethod UnifiedLBStorage() As %Status
+{
+    set sc=$SYSTEM.SQL.Util.SetOption("DDLFinal",0,.oldval)
+    return sc
 }
 
 }
