@@ -64,4 +64,8 @@ ClassMethod UnifiedLBStorage() As %Status
     return sc
 }
 
+/// Change password for preset users
+ClassMethod ChangePassword()
+{
+    x "new $namespace,s,p,n set $namespace=""%SYS"",p(""Password"")=""NewPass123"" for n=""admin"",""cspsystem"",""iam"",""superuser"",""unknownuser"",""_system"",""_ensemble"" set s=##class(Security.Users).Modify(n,.p)"
 }
