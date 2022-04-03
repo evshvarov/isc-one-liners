@@ -8,6 +8,7 @@
       <Packaging>module</Packaging>
       <SourcesRoot>src/iris</SourcesRoot>
       <Resource Name="dc.one.PKG"/>
+      <Resource Name="dc.one.Line.INC"/>
     </Module>
   </Document>
 </Export>
