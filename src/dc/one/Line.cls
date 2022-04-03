@@ -40,7 +40,7 @@ ClassMethod EnableIRISBI()
     // enable in a given namespace
     do EnableDeepSee^%SYS.cspServer("/csp/namespace/") 
     // enable in a current namespace
-    $$$oneirisbion($namespace)
+    $$$oneenableirisbi($namespace)
     do EnableDeepSee^%SYS.cspServer("/csp/"_$$$LOWER($namespace))
 }
 
