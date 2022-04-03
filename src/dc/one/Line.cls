@@ -75,18 +75,13 @@ ClassMethod UnifiedLBStorage() As %Status
     return sc
 }
 
-ClassMethod ResetTerminalSession() As %Status
-{
-    ;$$$onekillvar
-    ;kill  zremove
-    return $$$OK
-}
-
-ClassMethod ChangePasswordForPresetUsers() As %Status
+/// Change password for preset users
+ClassMethod ChangeAdminPassword() As %Status
 {
    
     $$$changealladminpass("pass")
     x "new $namespace,s,p,n set $namespace=""%SYS"",p(""Password"")=""NewPass123"" for n=""admin"",""cspsystem"",""iam"",""superuser"",""unknownuser"",""_system"",""_ensemble"" set s=##class(Security.Users).Modify(n,.p)"
+    quit $$$OK
 }
 
 }
