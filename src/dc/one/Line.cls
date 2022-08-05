@@ -19,6 +19,14 @@ ClassMethod InstallZPM()
     s r=##class(%Net.HttpRequest).%New(),r.Server="pm.community.intersystems.com",r.SSLConfiguration="ISC.FeatureTracker.SSL.Config" d r.Get("/packages/zpm/latest/installer"),$system.OBJ.LoadStream(r.HttpResponse.Data,"c")
 }
 
+/// install ZPM with proxy. You can call this, or copy the line
+/// modified Sergey Mikhaylenko
+ClassMethod InstallZPMproxy()
+{
+    s r=##class(%Net.HttpRequest).%New(),proxy=$System.Util.GetEnviron("https_proxy") Do ##class(%Net.URLParser).Parse(proxy,.pr) s:$d(pr) r.ProxyHTTPS=1,r.ProxyTunnel=1,r.ProxyPort=pr("port"),r.ProxyServer=pr("host") s:pr("username")'=""&&(pr("password")'="") r.ProxyAuthorization="Basic "_$system.Encryption.Base64Encode(pr("username")_":"_pr("password")) set r.Server="pm.community.intersystems.com",r.SSLConfiguration="ISC.FeatureTracker.SSL.Config" d r.Get("/packages/zpm/latest/installer"),$system.OBJ.LoadStream(r.HttpResponse.Data,"c")
+}
+
+
 /// Enable IRIS BI in an Namespace
 /// Create %All Namespace
 /// , but don't forget to return to the initial namespace
