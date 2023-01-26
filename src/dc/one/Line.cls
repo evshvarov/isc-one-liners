@@ -19,6 +19,13 @@ ClassMethod InstallZPM()
     s r=##class(%Net.HttpRequest).%New(),r.Server="pm.community.intersystems.com",r.SSLConfiguration="ISC.FeatureTracker.SSL.Config" d r.Get("/packages/zpm/latest/installer"),$system.OBJ.LoadStream(r.HttpResponse.Data,"c")
 }
 
+/// Read file. Sample run: if ##class(dc.one.Line).ReadFile("/irisdev/app/module.xml",.txt) write txt
+/// by Sergey Mikhaylenko
+ClassMethod ReadFile(filename="/irisdev/app/module.xml",ByREf txt) as %Status
+{
+	set f=##class(%File).%New(filename) if f.Open("RSU") {s txt=f.Read() w !,txt } else { w !,$System.Status.GetErrorText($g(%objlasterror)) quit $g(%objlasterror) } d f.%Close() quit $$$OK
+}
+
 /// install ZPM with proxy. You can call this, or copy the line
 /// modified Sergey Mikhaylenko
 ClassMethod InstallZPMproxy()
