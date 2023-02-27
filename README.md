@@ -21,7 +21,7 @@ Execute classmethods in ##class(dc.one.Line).Method()
 
 ## Installation
 
-zpm "dc-one-liners"
+zpm "install dc-one-liners"
 
 
 ## CONTRIBUTION
