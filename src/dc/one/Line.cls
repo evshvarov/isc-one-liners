@@ -26,6 +26,13 @@ ClassMethod ReadFile(filename="/irisdev/app/module.xml",ByREf txt) as %Status
 	set f=##class(%File).%New(filename) if f.Open("RSU") {s txt=f.Read() w !,txt } else { w !,$System.Status.GetErrorText($g(%objlasterror)) quit $g(%objlasterror) } d f.%Close() quit $$$OK
 }
 
+/// Write to file. Sample run: write ##class(dc.one.Line).Write2File("d:\!\log.txt","do 1^%SS") 
+/// by Sergey Mikhaylenko
+ClassMethod Write2File(fn = "/tmp/log.txt", ByRef cmd) As %Status
+{
+	set:$g(fn)="" fn="/tmp/log.txt" open fn:("WNSK\UTF8\"):1 if $test { use fn xecute cmd close fn quit $$$OK } else { w !,$System.Status.GetErrorText($g(%objlasterror)) quit $g(%objlasterror) }
+}
+
 /// install ZPM with proxy. You can call this, or copy the line
 /// modified Sergey Mikhaylenko
 ClassMethod InstallZPMproxy()
