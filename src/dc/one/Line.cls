@@ -112,4 +112,19 @@ ClassMethod ChangeAdminPassword() As %Status
     quit $$$OK
 }
 
+/// do ##class(dc.one.Line).passwordless() 
+/// https://community.intersystems.com/post/passwordless-mode-dev-mode-iris
+ClassMethod passwordless(app="/csp/sys") As %Status
+{
+  X "n $namespace set $namespace=""%SYS"" set par(""AutheEnabled"")=64,tSC=##class(Security.Applications).Modify($g(app,""/csp/sys""),.par),role=""%All"",tSC=##class(Security.Users).AddRoles(""UnknownUser"",.role,1) "
+  quit $$$OK
+}
+
+/// Fastest way to create a namespace with two databases for code and globals
+/// do ##class(dc.one.Line).createdatabase("testdb") 
+ClassMethod createdatabase(name) As %Library.ResultSet
+{
+  quit $SYSTEM.SQL.Execute("CREATE DATABASE "_name)
+}
+
 }
