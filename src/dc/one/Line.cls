@@ -120,5 +120,11 @@ ClassMethod passwordless(app="/csp/sys") As %Status
   quit $$$OK
 }
 
+/// Fastest way to create a namespace with two databases for code and globals
+/// do ##class(dc.one.Line).createdatabase("testdb") 
+ClassMethod createdatabase(name) As %Library.ResultSet
+{
+  quit $SYSTEM.SQL.Execute("CREATE DATABASE "_name)
+}
 
 }
