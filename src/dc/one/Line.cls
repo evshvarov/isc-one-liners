@@ -4,6 +4,18 @@ Include dc.one.Line
 Class dc.one.Line
 {
 
+/// Add a one-line Z-command
+///  Samples:
+/// set line="ZPMN(m="""") new $namespace zpm ""zn ""_m_""*""  quit" do ##class(dc.one.Line).AddLineInZZCommand(line)
+/// set line="ZPMF(m="""") new $namespace zpm ""ver"" zpm ""repo -list"" zpm ""find ""_m  quit" do ##class(dc.one.Line).AddLineInZZCommand(line)
+/// set line="ZLIC() new $namespace zn ""%SYS"" do ^CKEY quit" do ##class(dc.one.Line).AddLineInZZCommand(line)
+/// set line="ZPIPE(%a) new $namespace zn """_$namespace_""" do cmd^Zpipe(%a) quit" do ##class(dc.one.Line).AddLineInZZCommand(line)
+/// set line="ZZJSN(in,out="""") new $namespace zn """_$namespace_""" new res,t,zr set t=$t,zr=$zr set res=$$Do^ZPretty(.in) if (out="""") { write res,! } elseif ($isObject(out) && out.%IsA(""%Stream.Object"")) { do out.Write(res) } else { set @out=res } set $zr=zr if t {} quit"  do ##class(dc.one.Line).AddLineInZZCommand(line)
+ClassMethod AddLineInZZCommand(line,rou="%ZLANGC00")
+{
+	new $namespace set $namespace="%sys" merge r=^rMAC(rou,0) for i=1:1 { quit:'$DATA(r(i),str)  set:$p(str,"(")=$p(line,"(") r(i)=line,yes=1 } if '$GET(yes) {	set r(i)=line,r(0)=i } D ROUTINE^%R(rou_".MAC",.r,.err,"CS",0)
+}
+
 ClassMethod CreateSSL()
 {
     

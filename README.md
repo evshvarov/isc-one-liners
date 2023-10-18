@@ -6,6 +6,10 @@
 # isc-one-liners
 This is a collection of useful one line commands for ObjectScript. Use and add your own!
 
+## What's new
+
+Added a one-line Z-command.
+
 ## Description
 Currently it has one-liners of:
 * SSL configuration creation
