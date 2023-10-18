@@ -3,7 +3,7 @@
   <Document name="dc-one-liners.ZPM">
     <Module>
       <Name>dc-one-liners</Name>
-      <Version>1.2.1</Version>
+      <Version>1.2.2</Version>
       <Description>Contains useful ObjectScript one-line long commands. Add your own! </Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
