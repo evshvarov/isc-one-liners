@@ -4,6 +4,15 @@ Include dc.one.Line
 Class dc.one.Line
 {
 
+/// Add one line to the history of the IRIS terminal for Linux. It is very convenient to insert commands into the iris.script file, for example, to test a module in terminal mode.
+///  Samples:
+/// if $zf(-1,"echo ':do 1^%SS' >> ~/.iris_history")
+ClassMethod Add2History()
+{
+	if $zf(-1,"echo ':zpm ""test my-module""' >> ~/.iris_history")
+}
+
+
 /// Add a one-line Z-command
 ///  Samples:
 /// set line="ZPMN(m="""") new $namespace zpm ""zn ""_m_""*""  quit" do ##class(dc.one.Line).AddLineInZZCommand(line)
